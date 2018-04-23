@@ -22,23 +22,22 @@ $test3balance = array(		// Баланс третей биржи
 		"EUR" => 100
 	);
 
-$test1 = new stockExchange;
+$test1 = new stockExchange("qwerty123");
 $test1->stockExBalance = $test1balance;
 
-$test2 = new stockExchange;
+$test2 = new stockExchange("qwerty123");
 $test2->stockExBalance = $test2balance;
 
-$test3 = new stockExchange;
+$test3 = new stockExchange("qwerty123");
 $test3->stockExBalance = $test3balance;
 /*  !--- Тестовые данные ---   */
 
-dump($test1);
-$arrs = array($test1,$test2,$test3);
-dump($arrs);
-dump(setPercentForCurrency($arrs, $admData));
+dump($admData);
+$arrTests = array($test1,$test2,$test3);
+dump($arrTests);
+dump(setPercentForCurrency($arrTests, $admData));
 
-
-function ratio($currency){			// То же самое что и в классе биржа
+function ratio($currency){			// Функция возвращает курс по отношению к доллару
 	$ratioDollar = array(
 		"USD" => 1,
 		"RUB" => 61.3873542,
@@ -69,12 +68,12 @@ function setPercentForCurrencyStock($obj, $arrData){			// Изменяет пр�
 	}
 	$currancy = array();
 	foreach ($obj->stockExBalance as $key => $value) {
-		$costPrice = $value / $obj->getPrice($key."USD");	// Вычисляем сколько купить долоров, на число нашей валюты
+		$costPrice = $value / $obj->getPrice($key."USD");	// Вычисляем сколько купить долларов, на сумму нашей валюты
 		$obj->buy($key."USD", $costPrice);					// Покупаем
 	}
 	$summInDollar = $obj->stockExBalance["USD"];			// Тут вся валюта в долларах
 	foreach ($arrData as $key => $value) {
-		$neededVal = $summInDollar/100*$value;				// Сколько доллоров нужно потратить что бы получить нужный процент
+		$neededVal = $summInDollar/100*$value;					// Сколько долларов нужно потратить что бы получить нужный процент
 		$costPrice = $neededVal * $obj->getPrice($key."USD");		// вычисляем сколько нужно купить необходимой валюты
 		$obj->buy("USD".$key, $costPrice);							// покупает валюту
 	}
