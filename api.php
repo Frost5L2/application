@@ -9,7 +9,7 @@ class stockExchange{
 				throw new Exception('Введен не верный apiKey');
 			}
 		} catch (Exception $e) {
-		    die ('Выброшено исключение: '.  $e->getMessage(). "\n");
+		    die ('Выброшено исключение: '.$e->getMessage()."\n");
 		}
 	}
 

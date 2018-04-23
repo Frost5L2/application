@@ -22,7 +22,7 @@ $test3balance = array(		// Баланс третей биржи
 		"EUR" => 100
 	);
 
-$test1 = new stockExchange("qwerty123");
+$test1 = new stockExchange("qwerty123");	// Передаем строку с ключем, дума. в Yii их можно хранить в параметрах Yii::$app->params["имяAPI"]
 $test1->stockExBalance = $test1balance;
 
 $test2 = new stockExchange("qwerty123");
